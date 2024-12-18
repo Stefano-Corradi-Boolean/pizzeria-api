@@ -7,46 +7,43 @@ const port = 3000;
 
 app.use(express.static('public'));
 
-
-//http://localhost:3000/
-
 app.get('/', (req, res) => {
   res.send('Server della pizzeria');
 })
 
+
+/// ROTTE CRUD ////////////////////
+// index
 app.get('/pizzas', (req, res) => {
-
-
-  const basePathPizze = menu.map(pizza => {
-    pizza.image = getBasePath(req) + pizza.image;
-    return pizza
-  });
-
-  const ingredient = req.query.ingredient;
-
-  if(!ingredient){
-    return res.json(basePathPizze)
-  }
-
-  const filteredPizzas = basePathPizze.filter(pizza => pizza.ingredients.includes(ingredient))
-
-  res.json(filteredPizzas)
+  res.send('Rotta index: stampo tutte le pizze')
 })
 
-app.get('/img', (req, res) => {
-  
-  const id = req.query.id ?? 1;
-  
-  const pizzaImage = menu.find(pizza => pizza.id == id).image;
-  console.log(pizzaImage);
-  
-  res.send(`<img src=${pizzaImage}>`)
+// show
+app.get('/pizzas/:id', (req, res) => {
+  res.send('Rotta show: stampo il dettaglio della pizza con id = ' + req.params.id)
 })
 
+//store
+app.post('/pizzas', (req, res) => {
+  res.send('Rotta store: Creazione di una nuova pizza')
+})
 
+// update
+app.put('/pizzas/:id', (req, res) => {
+  res.send('Rotta update: Modifica dell\'itero elemento con id = ' + req.params.id)
+})
 
+// modify 
+app.patch('/pizzas/:id', (req, res) => {
+  res.send('Rotta modify: modifica di parte dell\'elemnto con id = ' + req.params.id)
+})
 
-app. listen(port, () => {
+// destroy
+app.delete('/pizzas/:id', (req, res) => {
+  res.send('Rotta destroy: eliminazione dell\'elemento con id = ' + req.params.id)
+})
+
+app.listen(port, () => {
   console.log(`Sono in ascolto alla porta ${port}`);
   
 })
