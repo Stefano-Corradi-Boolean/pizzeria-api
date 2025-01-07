@@ -1,6 +1,5 @@
 const menu = require('./data/menu');
 const express = require('express');
-const { getBasePath } = require('./modules/utils')
 const pizzaRouter = require('./routers/pizzas');
 
 const app = express();
@@ -18,5 +17,5 @@ app.use('/pizzas', pizzaRouter);
 
 app.listen(port, () => {
   console.log(`Sono in ascolto alla porta ${port}`);
-  
+
 })
