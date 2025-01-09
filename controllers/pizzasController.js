@@ -2,6 +2,8 @@ const menu = require('../data/menu');
 
 const index = (req, res) => {
 
+  // effettuo on controllo sui dati. Il controllo non supera le condizioni e scateno un errore custom
+  // throw new Error('Questo errore l\'ho scatenato io');
 
   // se non ricevo nessun parametro in query string stampo tutto il menu altrimenti lo filtro
   const { ingredient } = req.query;
